@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,13 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+}
+
+val keystoreProperties = Properties().apply {
+    val propsFile = rootProject.file("keystore.properties")
+    if (propsFile.exists()) {
+        propsFile.inputStream().use { load(it) }
+    }
 }
 
 android {
@@ -19,6 +28,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val s3Endpoint = keystoreProperties.getProperty("S3_ENDPOINT") ?: ""
+        val s3Bucket = keystoreProperties.getProperty("S3_BUCKET_NAME") ?: ""
+        val s3Access = keystoreProperties.getProperty("S3_ACCESS_KEY") ?: ""
+        val s3Secret = keystoreProperties.getProperty("S3_SECRET_KEY") ?: ""
+
+        buildConfigField("String", "S3_ENDPOINT", "\"$s3Endpoint\"")
+        buildConfigField("String", "S3_BUCKET_NAME", "\"$s3Bucket\"")
+        buildConfigField("String", "S3_ACCESS_KEY", "\"$s3Access\"")
+        buildConfigField("String", "S3_SECRET_KEY", "\"$s3Secret\"")
     }
 
     buildTypes {
@@ -39,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -90,4 +110,13 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.aws.android.sdk.s3)
+
+    implementation(libs.jsoup)
+
+    implementation(libs.pdfbox.android)
+
+    implementation(libs.commonmark)
 }

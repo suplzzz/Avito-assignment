@@ -1,4 +1,4 @@
-package com.suplz.avitoassignment.ui.theme
+package com.suplz.avitoassignment.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
