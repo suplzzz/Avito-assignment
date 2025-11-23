@@ -1,5 +1,7 @@
 [versions]
 agp = "8.13.1"
+commonmark = "0.27.0"
+jsoup = "1.21.2"
 kotlin = "2.2.21"
 coreKtx = "1.17.0"
 junit = "4.13.2"
@@ -24,7 +26,10 @@ ksp = "2.2.21-2.0.4"
 coil = "3.3.0"
 datastore = "1.2.0"
 navigation = "2.9.6"
+pdfboxAndroid = "2.0.27.0"
 room = "2.8.4"
+coroutines = "1.10.2"
+awsS3 = "2.75.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +52,7 @@ androidx-compose-material-icons = { group = "androidx.compose.material", name = 
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 # Firebase
+commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
@@ -70,9 +76,14 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 # Testing
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
+aws-android-sdk-s3 = { group = "com.amazonaws", name = "aws-android-sdk-s3", version.ref = "awsS3" }
+pdfbox-android = { module = "com.tom-roush:pdfbox-android", version.ref = "pdfboxAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
